@@ -20,7 +20,7 @@ const words = [
   "dwarves",
   "oxygen",
 ];
-
+const bannedKeys = [];
 const hangmanParts = [];
 
 const ground = document.getElementById("ground");
@@ -54,7 +54,8 @@ let correctLetter = 0;
 
 startButton.addEventListener("click", startGame);
 
-function startGame(e) {
+function startGame() {
+  document.addEventListener("keydown", (e) => handleKeyPress(e));
   startButton.style.display = "none";
   hangmanParts.forEach((part) => {
     part.style.display = "none";
@@ -75,20 +76,22 @@ function playGame(key) {
         child.style.color = "white";
         correctLetter++;
       }
-      if (correctLetter === currentWord.length) {
-        playerWins();
-      }
     });
   } else {
     hangmanParts[wrongGuesses].style.display = "";
     wrongGuesses++;
-    if (wrongGuesses === hangmanParts.length) {
-      gameOver();
-    }
+  }
+
+  let win = correctLetter === currentWord.length;
+  let lose = wrongGuesses === hangmanParts.length;
+  let isGameOver = win || lose;
+  if (isGameOver) {
+    gameOver(win);
   }
 }
 
 function gameOver(win) {
+  document.removeEventListener("keydown", (e) => handleKeyPress(e));
   wrongGuesses = 0;
   correctLetter = 0;
   startButton.innerHTML = win
@@ -138,7 +141,7 @@ function addLettersToPlayArea() {
       function onLetterClick() {
         playGame(letter.toLowerCase());
         letterButton.removeEventListener("click", onLetterClick);
-        letterButton.style.cursor = "default";
+        letterButton.disabled = true;
         letterButton.style.color = "gray";
       }
 
@@ -149,4 +152,14 @@ function addLettersToPlayArea() {
   });
 
   playArea.appendChild(gameArea);
+}
+
+function handleKeyPress(e) {  
+  let key = e.key.toLowerCase();
+  if (!bannedKeys.includes(key)) {
+    playGame(key);
+    bannedKeys.push(key);
+    document.getElementById(`${key.toUpperCase()}`).style.color = "gray";
+    document.getElementById(`${key.toUpperCase()}`).disabled = true;
+  }
 }
