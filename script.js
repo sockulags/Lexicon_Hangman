@@ -156,10 +156,14 @@ function addLettersToPlayArea() {
 
 function handleKeyPress(e) {  
   let key = e.key.toLowerCase();
-  if (!bannedKeys.includes(key)) {
+  if (isLetterString(key) && !bannedKeys.includes(key)) {
     playGame(key);
     bannedKeys.push(key);
     document.getElementById(`${key.toUpperCase()}`).style.color = "gray";
     document.getElementById(`${key.toUpperCase()}`).disabled = true;
   }
+}
+
+function isLetterString(str) {
+    return str.match(/^[a-zA-Z]+$/);
 }
