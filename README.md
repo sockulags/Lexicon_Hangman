@@ -1,8 +1,7 @@
-![poster](poster.png)
-
 # Hangman
 
 Classic game of Hangman with HTML, CSS and JS
+Try it out [here](https://sockulags.github.io/Lexicon_Hangman/)
 
 ## Instructions
 
@@ -29,8 +28,3 @@ It works by changing the opacity of the `<ellipse>` element and the different `<
 
 - The secret word should be selected by random when the game starts, from an array of existing words.
 
-
-
-_( The screenshot below is just a suggestion on how it can look when the user failed to guess to secret word )_
-
-![screen](screen.png)
