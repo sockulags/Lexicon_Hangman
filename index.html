@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman</title>
+    <link rel="icon" href="img/hangman.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
+    <div id="languageSelect">
+        <div class="language-option" data-lang="swedish"></div>
+        <div class="language-option selected-language" data-lang="english"></div>
+    </div>
+    
     <div class="play-game">Click to start</div>
     <div class="play-area">
+        <h1 class="title">Hangman</h1>
         <div class="hangman">
     <svg width="501" height="465" viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse id="ground" cx="250.5" cy="536" rx="250.5" ry="29" fill="black" fill-opacity="0.06"/>
@@ -25,9 +32,9 @@
    
     <div class="word">        
     </div>
-    <h2>Press or enter a key</h2>
+    <h2 class="instructions">Press or enter a key</h2>
     </div>
-    <script src="script.js">     
+    <script src="script.js" type="module">     
     </script>
     <script>
 

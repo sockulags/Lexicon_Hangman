@@ -15,7 +15,11 @@
     flex-direction: column;
     align-content: space-around;
     justify-content: space-around;
-   
+    height: 100svh; 
+  }
+
+  .title{
+    text-align: center;
   }
 
   .hangman{
@@ -23,14 +27,14 @@
   }
 
   svg{
-    width: 300px;
+    width: 350px;
   }
   
   .game-area {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 350px; 
+    width: 375px; 
     margin: 0 auto;
     
   }
@@ -39,7 +43,7 @@
     width: 30px;
     height: 30px;
     border-radius: 5px;  
-    margin: 0 5px 5px 0;
+    margin: 0 3px 3px 0;
     cursor: pointer;
     background-color: #666;
     border: none;
@@ -56,7 +60,7 @@
 
   h2{
     text-align: center;
-    margin-bottom: 10px;
+    margin: 5px;
     font-size: 16px;
     font-weight: 300;
   }
@@ -78,18 +82,14 @@
   
 
   .play-game{
-    display: flex;
-    flex-wrap: wrap;
-    align-items:center;
-    justify-content: center;
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 50%;    
     height: auto;
     padding: 10px;
     text-align: center;
     background-color: rgb(39, 38, 41);
-    width: 250px;
+    width: 300px;
     font-size: 30px;
     transform: translate(-50%, -50%);
     cursor: pointer;
@@ -98,3 +98,33 @@
   p{
     font-size: 15px;
   }
+
+#languageSelect{
+  top: 25px;
+  position: absolute;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+  
+.language-option {
+  width: 49px; 
+  height: 30px; 
+  background-size: cover; 
+  background-position: center; 
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.language-option[data-lang="swedish"] {
+  background-image: url("img/sweden.svg"); 
+}
+
+.language-option[data-lang="english"] {
+  background-image: url("img/britain.svg");
+}
+
+.title{
+  font-size: 24px;
+}

@@ -1,27 +1,49 @@
-const words = [
-  "mystery",
-  "quizzes",
-  "juxtapose",
-  "whiskey",
-  "zigzag",
-  "symphony",
-  "knapsack",
-  "wavelength",
-  "bungalow",
-  "crypt",
-  "horizon",
-  "glitch",
-  "fjord",
-  "vortex",
-  "quiver",
-  "sphinx",
-  "gazebo",
-  "yacht",
-  "dwarves",
-  "oxygen",
-];
+import { words, qwertyRows, overlayText } from './languageData.js';
+
+let currentLanguage = 'english';
+
 let bannedKeys = [];
 const hangmanParts = [];
+
+const languageOptions = document.querySelectorAll('.language-option');
+const title = document.querySelector(".title");
+
+languageOptions.forEach(option => {
+  option.addEventListener('click', function() {
+      currentLanguage = this.getAttribute('data-lang');
+      console.log("Selected language:", currentLanguage);
+      languageChange();
+      
+  });
+});
+
+function resetGame() {
+  // Reset game variables
+  currentWord = "";
+  wrongGuesses = 0;
+  correctLetter = 0;
+  bannedKeys = [];
+
+  word.innerHTML = "";
+  gameArea.innerHTML = "";
+
+  hangmanParts.forEach(part => {
+    part.style.display = "";
+  });
+
+  instructions.style.display = "none";
+  startButton.style.display = "";
+}
+
+// Inside the languageChange function
+function languageChange(){
+    startButton.innerHTML = overlayText[currentLanguage].start;
+  instructions.innerHTML = overlayText[currentLanguage].instructions;
+  title.innerHTML = overlayText[currentLanguage].title;
+  document.title = overlayText[currentLanguage].title;
+  resetGame();
+ 
+}
 
 const ground = document.getElementById("ground");
 const head = document.getElementById("head");
@@ -48,6 +70,7 @@ let currentWord = "";
 const gameArea = document.createElement("div");
 const playArea = document.querySelector(".play-area");
 const word = document.querySelector(".word");
+
 
 let wrongGuesses = 0;
 let correctLetter = 0;
@@ -99,28 +122,24 @@ function gameOver(win) {
   wrongGuesses = 0;
   correctLetter = 0;
   startButton.innerHTML = win
-    ? "You win! <br> <p>Click to play again</p>"
-    : "Game over<br> <p>Click to try again</p>";
+    ? overlayText[currentLanguage].win
+    : overlayText[currentLanguage].lose;
   startButton.style.display = "";  
+
+  Array.from(word.children).forEach(child => {
+    child.textContent = child.getAttribute("data-letter");
+    child.style.color = "lightgray";
+  })
+
   const buttons = document.querySelectorAll(".game-area button");
   buttons.forEach((button) => {
     button.disabled = true;
     button.style.cursor = "default";
   });
 }
-function blockClicks(event) {
-  event.preventDefault();
-}
-function enableClicks() {
-  document.removeEventListener("click", blockClicks);
-}
-
-function disableClicks() {
-  document.addEventListener("click", blockClicks);
-}
 
 function addWordToGame() {
-  currentWord = words[Math.floor(Math.random() * words.length)].toUpperCase();
+  currentWord = words[currentLanguage][Math.floor(Math.random() * words[currentLanguage].length)].toUpperCase();
   currentWord.split("").forEach((letter) => {
     const letterDiv = document.createElement("div");
     letterDiv.classList.add("letter");
@@ -131,9 +150,8 @@ function addWordToGame() {
 }
 
 function addLettersToPlayArea() {
-  gameArea.classList.add("game-area");
-  const qwertyRows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
-  qwertyRows.forEach((row) => {
+  gameArea.classList.add("game-area"); 
+  qwertyRows[currentLanguage].forEach((row) => {
     const rowDiv = document.createElement("div");
     rowDiv.classList.add("row");
     row.split("").forEach((letter) => {
