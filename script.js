@@ -20,7 +20,7 @@ const words = [
   "dwarves",
   "oxygen",
 ];
-const bannedKeys = [];
+let bannedKeys = [];
 const hangmanParts = [];
 
 const ground = document.getElementById("ground");
@@ -55,6 +55,7 @@ let correctLetter = 0;
 startButton.addEventListener("click", startGame);
 
 function startGame() {
+  bannedKeys = [];
   document.addEventListener("keydown", (e) => handleKeyPress(e));
   startButton.style.display = "none";
   hangmanParts.forEach((part) => {
@@ -70,14 +71,17 @@ function startGame() {
 }
 
 function playGame(key) {
-  if (currentWord.includes(key)) {
-    Array.from(word.children).forEach((child) => {
-      if (child.textContent === key) {
-        child.style.color = "white";
-        correctLetter++;
-      }
-    });
-  } else {
+  let guessedCorrectly = false;
+  Array.from(word.children).forEach((child) => {
+    if (child.getAttribute("data-letter") === key) {
+      child.style.color = "white";
+      child.textContent = key; 
+      guessedCorrectly = true;
+      correctLetter++;
+    }
+  });
+
+  if (!guessedCorrectly) {
     hangmanParts[wrongGuesses].style.display = "";
     wrongGuesses++;
   }
@@ -97,8 +101,7 @@ function gameOver(win) {
   startButton.innerHTML = win
     ? "You win! <br> <p>Click to play again</p>"
     : "Game over<br> <p>Click to try again</p>";
-  startButton.style.display = "";
-
+  startButton.style.display = "";  
   const buttons = document.querySelectorAll(".game-area button");
   buttons.forEach((button) => {
     button.disabled = true;
@@ -117,11 +120,11 @@ function disableClicks() {
 }
 
 function addWordToGame() {
-  currentWord = words[Math.floor(Math.random() * words.length)];
+  currentWord = words[Math.floor(Math.random() * words.length)].toUpperCase();
   currentWord.split("").forEach((letter) => {
     const letterDiv = document.createElement("div");
     letterDiv.classList.add("letter");
-    letterDiv.textContent = letter;
+    letterDiv.setAttribute("data-letter", letter);
     letterDiv.style.color = "#666";
     word.appendChild(letterDiv);
   });
@@ -139,7 +142,7 @@ function addLettersToPlayArea() {
       letterButton.textContent = letter;
 
       function onLetterClick() {
-        playGame(letter.toLowerCase());
+        playGame(letter);
         letterButton.removeEventListener("click", onLetterClick);
         letterButton.disabled = true;
         letterButton.style.color = "gray";
@@ -155,12 +158,12 @@ function addLettersToPlayArea() {
 }
 
 function handleKeyPress(e) {  
-  let key = e.key.toLowerCase();
+  let key = e.key.toUpperCase();
   if (isLetterString(key) && !bannedKeys.includes(key)) {
     playGame(key);
     bannedKeys.push(key);
-    document.getElementById(`${key.toUpperCase()}`).style.color = "gray";
-    document.getElementById(`${key.toUpperCase()}`).disabled = true;
+    document.getElementById(`${key}`).style.color = "gray";
+    document.getElementById(`${key}`).disabled = true;
   }
 }
 
