@@ -1,30 +1,98 @@
-# Hangman
+# Game Hub - Multiple Games Platform
 
-Classic game of Hangman with HTML, CSS and JS
+A collection of classic games built with HTML, CSS and vanilla JavaScript.
 Try it out [here](https://sockulags.github.io/Lexicon_Hangman/)
 
-## Instructions
+## Available Games
 
-You are going to build your version of the classical game Hangman. 
+### 🎭 Hangman
+Classic word guessing game where you try to guess the secret word before the hangman is complete.
 
-To your help, you have the `hangman.svg` that you can use in order to add the parts of the 'hangman'. It makes it possible to add a part of the `hangman` whenever you type in a letter that is not part of the secret word.
+### ⭕ Tic-Tac-Toe
+Traditional X's and O's game for two players.
 
-It works by changing the opacity of the `<ellipse>` element and the different `<path>` elements within the `<svg>`. If the opacity is 0, that part of the `<svg>` won't be visible. If it is 1 it will. The `<svg>` has enough parts _( ellipse and path elements )_ for six tries to guess the secret word.
+## Features
 
-### Restrictions
+- **Landing Page**: Clean game selection interface
+- **Navigation**: Easy switching between games with a persistent navbar
+- **Responsive Design**: Works on desktop and mobile devices
+- **Multi-language Support**: Hangman supports English and Swedish
+- **Consistent Styling**: Unified dark theme across all games
 
-- It must be built with vanilla JavaScript.
-- No usage of CSS frameworks or SCSS.
+## Project Structure
 
-### Requirements
+```
+├── index.html          # Landing page with game selection
+├── hangman.html        # Hangman game page
+├── hangman.js          # Hangman game logic
+├── tictactoe.html      # Tic-Tac-Toe game page
+├── tictactoe.js        # Tic-Tac-Toe game logic
+├── languageData.js     # Language data for hangman game
+├── styles.css          # Shared styles for all games
+└── img/               # Game icons and assets
+```
 
-- The secret word must be displayed in a way that makes it clear on how many letters that exist in the secret word.
+## Game Details
 
-- The previously typed letter must be visible for the user and if the player happens to type an already used letter, it should not affect the game, i.e. it should not count.
+### Hangman Game
+The hangman game uses SVG graphics to display the hangman being drawn with each incorrect guess. It includes:
 
-- If the player fails guessing the secret word, the UI should show that in a proper way and give the player the opportunity to start again, _( with a new secret word of course )_
+- Random word selection from language-specific word arrays
+- Visual letter keyboard interface
+- Progressive hangman drawing with each wrong guess
+- Support for English and Swedish languages
+- Keyboard input support
 
-- Same should happen if the player wins.
+**Original Requirements:**
+- Built with vanilla JavaScript (no frameworks)
+- Visual indication of word length
+- Letter tracking to prevent duplicate guesses
+- Win/lose detection with restart functionality
+- Random word selection from predefined arrays
 
-- The secret word should be selected by random when the game starts, from an array of existing words.
+### Tic-Tac-Toe Game
+A fully functional tic-tac-toe implementation featuring:
+
+- Two-player gameplay (X and O)
+- Visual player indicators with color coding
+- Win detection with highlighting of winning line
+- Draw game detection
+- Reset functionality for new games
+- Responsive grid layout
+
+## Technical Implementation
+
+- **Vanilla JavaScript**: All games built without external frameworks
+- **Modular Architecture**: Each game is self-contained
+- **ES6 Modules**: Modern JavaScript module system for hangman
+- **CSS Grid/Flexbox**: Responsive layouts
+- **Progressive Enhancement**: Works without JavaScript for basic navigation
+
+## Development
+
+The project uses a simple static file structure that can be served with any web server:
+
+```bash
+# Serve locally with Python
+python3 -m http.server 8000
+
+# Or with Node.js
+npx serve .
+```
+
+## Adding New Games
+
+To add a new game:
+
+1. Create `newgame.html` with the navbar structure
+2. Create `newgame.js` with game logic
+3. Add styles to `styles.css`
+4. Update the landing page (`index.html`) to include the new game card
+5. Update this README
+
+## Browser Compatibility
+
+- Modern browsers with ES6 support
+- CSS Grid and Flexbox support required
+- No external dependencies
 
