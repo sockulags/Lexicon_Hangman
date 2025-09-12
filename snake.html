@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <link rel="icon" href="img/hangman.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index.html">Game Hub</a>
+        </div>
+        <div class="nav-links">
+            <a href="hangman.html">Hangman</a>
+            <a href="tictactoe.html">Tic-Tac-Toe</a>
+            <a href="snake.html" class="active">Snake</a>
+        </div>
+    </nav>
+
+    <div class="play-area">
+        <h1 class="title">Snake</h1>
+        
+        <div class="game-status">
+            <div class="snake-score">Score: <span id="score">0</span></div>
+            <div class="game-message" id="gameMessage">Use arrow keys to control the snake</div>
+        </div>
+        
+        <div class="snake-game-container">
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+        </div>
+        
+        <div class="game-controls">
+            <button id="startButton" class="reset-button">Start Game</button>
+            <button id="pauseButton" class="reset-button" style="display: none;">Pause</button>
+        </div>
+    </div>
+    
+    <script src="snake.js"></script>
+</body>
+</html>

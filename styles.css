@@ -358,6 +358,26 @@
   padding-top: 100px; /* Account for fixed navbar */
 }
 
+/* Snake Game Styles */
+.snake-game-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+#gameCanvas {
+  border: 2px solid #666;
+  border-radius: 10px;
+  background-color: #2a2a2a;
+}
+
+.snake-score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #4CAF50;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .navbar {
@@ -383,5 +403,10 @@
   
   .cell {
     font-size: 1.5rem;
+  }
+  
+  #gameCanvas {
+    width: 300px;
+    height: 300px;
   }
 }
