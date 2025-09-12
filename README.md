@@ -11,6 +11,9 @@ Classic word guessing game where you try to guess the secret word before the han
 ### ⭕ Tic-Tac-Toe
 Traditional X's and O's game for two players.
 
+### 🐍 Snake
+Classic Snake game where you control a snake to eat food and grow longer. Use arrow keys to control the snake's direction.
+
 ## Features
 
 - **Landing Page**: Clean game selection interface
@@ -27,6 +30,8 @@ Traditional X's and O's game for two players.
 ├── hangman.js          # Hangman game logic
 ├── tictactoe.html      # Tic-Tac-Toe game page
 ├── tictactoe.js        # Tic-Tac-Toe game logic
+├── snake.html          # Snake game page
+├── snake.js            # Snake game logic
 ├── languageData.js     # Language data for hangman game
 ├── styles.css          # Shared styles for all games
 └── img/               # Game icons and assets
@@ -59,6 +64,17 @@ A fully functional tic-tac-toe implementation featuring:
 - Draw game detection
 - Reset functionality for new games
 - Responsive grid layout
+
+### Snake Game
+A classic Snake game implementation featuring:
+
+- Arrow key controls for smooth movement
+- Food collection and score tracking
+- Progressive snake growth when eating food
+- Wall and self-collision detection
+- Game over and restart functionality
+- Pause/resume game capability
+- Canvas-based rendering with grid visualization
 
 ## Technical Implementation
 
